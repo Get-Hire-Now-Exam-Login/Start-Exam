@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Payment Page</h2>
+    <p>Please read and accept our <a href="#">Terms & Conditions</a> before proceeding.</p>
+    <button id="payBtn">Pay Now</button>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    document.getElementById("payBtn").onclick = function () {
+      var options = {
+        key: "rzp_test_1234567890", // Replace with your Razorpay key
+        amount: 50000, // amount in paise (e.g., 50000 = ₹500)
+        currency: "INR",
+        name: "Exam Portal",
+        description: "Exam Registration Fee",
+        handler: function (response) {
+          window.location.href = "thankyou.html";
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
+    };
+  </script>
+</body>
+</html>
+
